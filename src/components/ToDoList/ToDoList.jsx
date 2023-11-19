@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import AddToDo from "../AddToDo/AddToDo";
 import ToDo from "../ToDo/ToDo";
-import uuid from "react-uuid";
 
 export default function ToDoList() {
-  const [toDo, setToDo] = useState([
-    { text: "study", id: uuid(), done: false },
-    { text: "grocery shopping", id: uuid(), done: false },
+  const [toDos, setToDos] = useState([
+    { text: "study", id: 123, status: "active" },
+    { text: "grocery shopping", id: 124, status: "active" },
   ]);
+
+  const handleAdd = (todo) => setToDos([...toDos, todo]);
+  const handleDelete = (todo) =>
+    setToDos(toDos.filter((t) => todo.id !== t.id));
+
   return (
     <section>
       <ul>
-        {toDo.map((todo) => (
-          <ToDo key={todo.id} toDo={todo} />
+        {toDos.map((todo) => (
+          <ToDo key={todo.id} toDo={todo} onDelete={handleDelete} />
         ))}
       </ul>
-      <AddToDo />
+      <AddToDo onAdd={handleAdd} />
     </section>
   );
 }
