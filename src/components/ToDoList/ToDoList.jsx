@@ -11,12 +11,19 @@ export default function ToDoList() {
   const handleAdd = (todo) => setToDos([...toDos, todo]);
   const handleDelete = (todo) =>
     setToDos(toDos.filter((t) => todo.id !== t.id));
+  const handleUpdate = (todo) =>
+    setToDos(toDos.map((t) => (t.id === todo.id ? todo : t)));
 
   return (
     <section>
       <ul>
         {toDos.map((todo) => (
-          <ToDo key={todo.id} toDo={todo} onDelete={handleDelete} />
+          <ToDo
+            key={todo.id}
+            toDo={todo}
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+          />
         ))}
       </ul>
       <AddToDo onAdd={handleAdd} />
