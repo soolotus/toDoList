@@ -5,7 +5,7 @@ export default function ToDo({ toDo, onDelete, onUpdate }) {
   const { id, text, status } = toDo;
   const handleChange = (e) => {
     const status = e.target.checked ? "completed" : "active";
-    onUpdate({ ...toDo, status: status });
+    onUpdate({ ...toDo, status });
   };
   return (
     <li>
