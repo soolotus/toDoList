@@ -3,6 +3,20 @@
   justify-content: space-between;
   background-color: var(--color-bg-dark);
 }
+
+.toggle {
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+  font-size: 1.2rem;
+  color: var(--color-text);
+}
+
+.toggle:hover {
+  color: var(--color-accent);
+  transform: scale(1.2);
+}
+
 .filters {
   display: flex;
 }
@@ -25,5 +39,5 @@
   content: "";
   display: block;
   margin-top: 0.2rem;
-  border: 1px solid var(--color-grey);
+  border: 2px solid var(--color-grey);
 }

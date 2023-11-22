@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddToDo from "../AddToDo/AddToDo";
 import ToDo from "../ToDo/ToDo";
 import styles from "./ToDoList.module.css";
 
 export default function ToDoList({ filter }) {
-  const [toDos, setToDos] = useState([
-    { text: "study", id: 123, status: "active" },
-    { text: "grocery shopping", id: 124, status: "active" },
-  ]);
+  const [toDos, setToDos] = useState(readTodosFromLocalStorage);
 
   const handleAdd = (todo) => setToDos([...toDos, todo]);
   const handleDelete = (todo) =>
     setToDos(toDos.filter((t) => todo.id !== t.id));
   const handleUpdate = (todo) =>
     setToDos(toDos.map((t) => (t.id === todo.id ? todo : t)));
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(toDos));
+  }, []);
+
   const filterdToDos = filteredToDos(toDos, filter);
 
   return (
@@ -32,6 +34,13 @@ export default function ToDoList({ filter }) {
     </section>
   );
 }
+
+function readTodosFromLocalStorage() {
+  console.log("readTodosFromLocalStorage");
+  const todos = localStorage.getItem("todos");
+  return todos ? JSON.parse(todos) : [];
+}
+
 function filteredToDos(todos, filter) {
   if (filter === "all") {
     return todos;
