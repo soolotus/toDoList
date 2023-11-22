@@ -1,5 +1,5 @@
 import React from "react";
-import { FaTrashAlt, FaUnderline } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import styles from "./ToDo.module.css";
 export default function ToDo({ toDo, onDelete, onUpdate }) {
   const { id, text, status } = toDo;

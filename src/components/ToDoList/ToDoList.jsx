@@ -14,7 +14,7 @@ export default function ToDoList({ filter }) {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(toDos));
-  }, []);
+  }, [toDos]);
 
   const filterdToDos = filteredToDos(toDos, filter);
 
