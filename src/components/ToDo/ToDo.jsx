@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTrashAlt, FaUnderline } from "react-icons/fa";
-
+import styles from "./ToDo.module.css";
 export default function ToDo({ toDo, onDelete, onUpdate }) {
   const { id, text, status } = toDo;
   const handleChange = (e) => {
@@ -8,15 +8,17 @@ export default function ToDo({ toDo, onDelete, onUpdate }) {
     onUpdate({ ...toDo, status });
   };
   return (
-    <li>
+    <li className={styles.todo}>
       <input
         id={id}
         type="checkbox"
         checked={status === "completed"}
         onChange={handleChange}
+        className={styles.checkbox}
       />
 
       <label
+        className={styles.text}
         htmlFor={id}
         style={
           status === "completed" ? { textDecorationLine: "line-through" } : {}
@@ -24,8 +26,8 @@ export default function ToDo({ toDo, onDelete, onUpdate }) {
       >
         {text}
       </label>
-      <span>
-        <button onClick={() => onDelete(toDo)}>
+      <span className={styles.icon}>
+        <button className={styles.button} onClick={() => onDelete(toDo)}>
           <FaTrashAlt />
         </button>
       </span>
